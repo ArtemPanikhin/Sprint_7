@@ -8,5 +8,6 @@ class TestGetOrderList:
 
     @allure.title('Проверка получения списка заказов. Ручка:/api/v1/orders')
     def test_successful_get_order_list(self):
-        response = requests.get(f"{Url.MAIN_URL}{Url.GET_ORDER_LIST}")
+        with allure.step('Отправка запроса на получение списка заказов'):
+            response = requests.get(Url.get_order_list_url())
         assert response.status_code == 200 and Flags.SUCCESSFUL_GET_ORDER_LIST in response.json()
